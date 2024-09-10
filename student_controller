@@ -1,0 +1,36 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\Student;
+
+class StudentController extends Controller
+{
+    //
+
+    public function storeData(Request $request) {
+        
+
+        $student = new Student;
+
+        $student->student_name = $request->input('student_name');
+        $student->student_email = $request->input('student_email');
+        $student->student_roll = $request->input('student_roll');
+        $student->student_phone = $request->input('student_phone');
+        $student->student_section = $request->input('student_section');
+
+        $student->save();
+
+        return back();
+
+
+    }
+
+    public function records(){
+        
+      $records =   Student::all();
+
+      return view('studentData', compact('records'));
+    }
+}
